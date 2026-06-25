@@ -1,4 +1,4 @@
-package com.brewdesk.dto.Order;
+package com.brewdesk.dto.order;
 
 import java.util.List;
 

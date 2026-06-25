@@ -1,8 +1,8 @@
-package com.brewdesk.dto.Product;
+package com.brewdesk.dto.product;
 
 import java.math.BigDecimal;
 
-import com.brewdesk.dto.Category.CategoryResponse;
+import com.brewdesk.dto.category.CategoryResponse;
 
 public record ProductResponse(
     Long id,

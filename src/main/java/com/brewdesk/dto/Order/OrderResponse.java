@@ -1,4 +1,4 @@
-package com.brewdesk.dto.Order;
+package com.brewdesk.dto.order;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

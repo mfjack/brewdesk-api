@@ -1,4 +1,4 @@
-package com.brewdesk.dto.Category;
+package com.brewdesk.dto.category;
 
 public record CategoryResponse(
     Long id,

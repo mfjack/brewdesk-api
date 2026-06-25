@@ -1,8 +1,8 @@
-package com.brewdesk.dto.Order;
+package com.brewdesk.dto.order;
 
 import java.math.BigDecimal;
 
-import com.brewdesk.dto.Product.ProductResponse;
+import com.brewdesk.dto.product.ProductResponse;
 
 public record OrderItemResponse(
     Long id,

@@ -1,4 +1,4 @@
-package com.brewdesk.dto.Category;
+package com.brewdesk.dto.category;
 
 import jakarta.validation.constraints.NotBlank;
 

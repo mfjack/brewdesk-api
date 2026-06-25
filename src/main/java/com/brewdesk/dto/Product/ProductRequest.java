@@ -1,4 +1,4 @@
-package com.brewdesk.dto.Product;
+package com.brewdesk.dto.product;
 
 import java.math.BigDecimal;
 
