@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.brewdesk.dto.order.OrderItemRequest;
 import com.brewdesk.dto.order.OrderRequest;
 import com.brewdesk.dto.order.OrderResponse;
+import com.brewdesk.dto.order.OrderStatusRequest;
 import com.brewdesk.service.OrderService;
 
 import jakarta.validation.Valid;
@@ -23,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/orders")
 @RequiredArgsConstructor
-public class OrderServiceController {
+public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
@@ -43,6 +45,13 @@ public class OrderServiceController {
     public ResponseEntity<List<OrderResponse>> findAll() {
         List<OrderResponse> responses = orderService.findAll();
         return ResponseEntity.status(200).body(responses);
+    }
+
+    @PatchMapping("{id}/status")
+    public ResponseEntity<OrderResponse> updateStatus(@PathVariable Long id,
+            @Valid @RequestBody OrderStatusRequest request) {
+        OrderResponse response = orderService.updateStatus(id, request.status());
+        return ResponseEntity.status(200).body(response);
     }
 
     @DeleteMapping("/{id}/items/{itemId}")

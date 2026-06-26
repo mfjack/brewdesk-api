@@ -130,6 +130,16 @@ public class OrderService {
                 return toResponse(order);
         }
 
+        public OrderResponse updateStatus(Long orderId, OrderStatus status) {
+                Order order = orderRepository.findById(orderId)
+                                .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + orderId));
+
+                order.setStatus(status);
+                Order savedOrder = orderRepository.save(order);
+
+                return toResponse(savedOrder);
+        }
+
         private OrderResponse toResponse(Order order) {
                 return new OrderResponse(
                                 order.getId(),
