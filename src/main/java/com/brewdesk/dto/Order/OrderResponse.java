@@ -12,7 +12,7 @@ public record OrderResponse(
     OrderStatus status,
     LocalDateTime createdAt,
     BigDecimal total,
-    List<OrderItemResponse> items
+    List<OrderItemResponse> orderItems
 ) {
     
 }
