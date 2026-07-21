@@ -173,11 +173,4 @@ public class OrderService {
                                                 .toList(),
                                 order.getObservation());
         }
-
-        public OrderResponse updateObservation(Long orderId, String observation) {
-                Order order = orderRepository.findById(orderId)
-                                .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + orderId));
-                order.setObservation(observation);
-                return toResponse(orderRepository.save(order));
-        }
 }
