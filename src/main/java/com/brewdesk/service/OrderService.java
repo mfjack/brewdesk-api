@@ -32,7 +32,7 @@ public class OrderService {
         public OrderResponse create(OrderRequest orderRequest) {
                 Order order = new Order();
                 order.setCustomerName(orderRequest.customerName());
-                order.setStatus(OrderStatus.PENDING);
+                order.setStatus(OrderStatus.OPEN);
                 order.setCreatedAt(LocalDateTime.now());
                 order.setOrderItems(new ArrayList<>());
                 order.setTotal(BigDecimal.ZERO);
@@ -140,6 +140,12 @@ public class OrderService {
                 return toResponse(savedOrder);
         }
 
+        public OrderResponse findById(Long id) {
+                Order order = orderRepository.findById(id)
+                                .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + id));
+                return toResponse(order);
+        }
+
         private OrderResponse toResponse(Order order) {
                 return new OrderResponse(
                                 order.getId(),
@@ -167,5 +173,13 @@ public class OrderService {
                                                                 item.getSubtotal(),
                                                                 item.getObservation()))
                                                 .toList());
+                order.getObservation();
+        }
+
+        public OrderResponse updateObservation(Long orderId, String observation) {
+                Order order = orderRepository.findById(orderId)
+                                .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + orderId));
+                order.setObservation(observation);
+                return toResponse(orderRepository.save(order));
         }
 }
