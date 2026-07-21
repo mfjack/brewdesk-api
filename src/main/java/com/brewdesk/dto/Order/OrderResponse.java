@@ -7,12 +7,12 @@ import java.util.List;
 import com.brewdesk.enums.OrderStatus;
 
 public record OrderResponse(
-    Long id,
-    String customerName,
-    OrderStatus status,
-    LocalDateTime createdAt,
-    BigDecimal total,
-    List<OrderItemResponse> orderItems
-) {
-    
+        Long id,
+        String customerName,
+        OrderStatus status,
+        LocalDateTime createdAt,
+        BigDecimal total,
+        List<OrderItemResponse> orderItems,
+        String observation) {
+
 }

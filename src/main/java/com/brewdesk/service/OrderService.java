@@ -130,14 +130,12 @@ public class OrderService {
                 return toResponse(order);
         }
 
-        public OrderResponse updateStatus(Long orderId, OrderStatus status) {
+        public OrderResponse updateStatus(Long orderId, OrderStatus status, String observation) {
                 Order order = orderRepository.findById(orderId)
                                 .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + orderId));
-
                 order.setStatus(status);
-                Order savedOrder = orderRepository.save(order);
-
-                return toResponse(savedOrder);
+                order.setObservation(observation);
+                return toResponse(orderRepository.save(order));
         }
 
         public OrderResponse findById(Long id) {
@@ -172,8 +170,8 @@ public class OrderService {
                                                                 item.getUnitPrice(),
                                                                 item.getSubtotal(),
                                                                 item.getObservation()))
-                                                .toList());
-                order.getObservation();
+                                                .toList(),
+                                order.getObservation());
         }
 
         public OrderResponse updateObservation(Long orderId, String observation) {
