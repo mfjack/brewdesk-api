@@ -65,4 +65,10 @@ public class OrderController {
         orderService.deleteOrder(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponse> findById(@PathVariable Long id) {
+        OrderResponse response = orderService.findById(id);
+        return ResponseEntity.ok(response);
+    }
 }
